@@ -75,3 +75,34 @@ Array.prototype.unshift.apply(arr1, arr2) // arr1 现在是 [3, 4, 5, 0, 1, 2]
 var arr1 = [0, 1, 2];
 var arr2 = [3, 4, 5];
 arr1 = [...arr2, ...arr1]; // arr1 现在为 [3, 4, 5, 0, 1, 2]
+
+//***在ES2018中，对字面量对象增加了展开特性，其行为是，将已有对象的所有可枚举属性拷贝到新构造的对象中。
+//浅拷贝(Shallow-cloning, 不包含 prototype) 和对象合并, 可以使用更简短的展开语法。而不必再使用 Object.assign() 方式.
+
+var obj1 = { foo: 'bar', x: 42 };
+var obj2 = { foo: 'baz', y: 13 };
+
+var clonedObj = { ...obj1 };
+// 克隆后的对象: { foo: "bar", x: 42 }
+
+var mergedObj = { ...obj1, ...obj2 };
+// 合并后的对象: { foo: "baz", x: 42, y: 13 }
+
+//提示: Object.assign() 函数会触发 setters，而展开语法则不会。
+
+//提示: 不能替换或者模拟 Object.assign() 函数:
+var obj1 = { foo: 'bar', x: 42 };
+var obj2 = { foo: 'baz', y: 13 };
+const merge = ( ...objects ) => ( { ...objects } );
+
+var mergedObj = merge ( obj1, obj2);
+// Object { 0: { foo: 'bar', x: 42 }, 1: { foo: 'baz', y: 13 } }
+
+var mergedObj = merge ( {}, obj1, obj2);
+// Object { 0: {}, 1: { foo: 'bar', x: 42 }, 2: { foo: 'baz', y: 13 } }
+//在这段代码中, 展开操作符(spread operator)并没有按预期的方式执行:
+//而是先将多个解构变为剩余参数(rest parameter), 然后再将剩余参数展开为字面量对象.
+
+//在数组或函数参数中使用展开语法时, 该语法只能用于 可迭代对象：
+var obj = {'key1': 'value1'};
+var array = [...obj]; // TypeError: obj is not iterable
