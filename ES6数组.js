@@ -203,7 +203,7 @@ let person = {name: 'John', age: 20};
 [NaN].findIndex(y => Object.is(NaN, y))
 // 0
 
-//****************6.组实例扩展API：fill()
+//****************6.数组实例扩展API：fill()
 fill方法使用给定值，填充一个数组。
 
 ['a', 'b', 'c'].fill(7)
@@ -230,3 +230,23 @@ let arr = new Array(3).fill([]);
 arr[0].push(5);
 arr
 // [[5], [5], [5]]
+
+//****************7.数组实例扩展API：entries()、keys()、values()
+//ES6 提供三个新的方法——entries()，keys()和values()——用于遍历数组。它们都返回一个遍历器对象，可以用for...of循环进行遍历
+//唯一的区别是keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历。
+
+for (let [index, elem] of ['a', 'b'].entries()) {
+  console.log(index, elem);
+}
+// 0 "a"
+// 1 "b"
+
+//如果不使用for...of循环，可以手动调用遍历器对象的next方法，进行遍历。
+
+let letter = ['a', 'b', 'c'];
+let entries = letter.entries();
+console.log(entries.next().value); // [0, 'a']
+console.log(entries.next().value); // [1, 'b']
+console.log(entries.next().value); // [2, 'c']
+
+
