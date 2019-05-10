@@ -112,3 +112,26 @@ Array.from([1, 2, 3])
 Array.from({ length: 3 });
 // [ undefined, undefined, undefined ]
 
+//上面代码中，Array.from返回了一个具有三个成员的数组，每个位置的值都是undefined。扩展运算符转换不了这个对象。
+
+//对于还没有部署该方法的浏览器，可以用Array.prototype.slice方法替代。
+
+const toArray = (() =>
+  Array.from ? Array.from : obj => [].slice.call(obj)
+)();
+
+//Array.from还可以接受第二个参数，作用类似于数组的map方法，用来对每个元素进行处理，将处理后的值放入返回的数组。
+
+Array.from(arrayLike, x => x * x);
+// 等同于
+Array.from(arrayLike).map(x => x * x);
+
+Array.from([1, 2, 3], (x) => x * x)
+// [1, 4, 9]
+
+// /Array.from()可以将各种值转为真正的数组，并且还提供map功能。
+//这实际上意味着，只要有一个原始的数据结构，你就可以先对它的值进行处理，然后转成规范的数组结构，进而就可以使用数量众多的数组方法。
+
+Array.from({ length: 2 }, () => 'jack')
+// ['jack', 'jack']
+//上面代码中，Array.from的第一个参数指定了第二个参数运行的次数。这种特性可以让该方法的用法变得非常灵活。
