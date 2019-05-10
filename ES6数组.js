@@ -174,7 +174,7 @@ Array.prototype.copyWithin(target, start = 0, end = this.length)
 [1, 2, 3, 4, 5].copyWithin(0, 3)
 // [4, 5, 3, 4, 5]
 
-//****************4.数组实例扩展API：find()、findIndex()
+//****************5.数组实例扩展API：find()、findIndex()
 
 //数组实例的find方法，用于找出第一个符合条件的数组成员。
 //它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。
@@ -202,3 +202,31 @@ let person = {name: 'John', age: 20};
 
 [NaN].findIndex(y => Object.is(NaN, y))
 // 0
+
+//****************6.组实例扩展API：fill()
+fill方法使用给定值，填充一个数组。
+
+['a', 'b', 'c'].fill(7)
+// [7, 7, 7]
+
+new Array(3).fill(7)
+// [7, 7, 7]
+//代码表明，fill方法用于空数组的初始化非常方便。数组中已有的元素，会被全部抹去。
+
+//ll方法还可以接受第二个和第三个参数，用于指定填充的起始位置和结束位置。
+
+['a', 'b', 'c'].fill(7, 1, 2)
+// ['a', 7, 'c']
+//代码表示，fill方法从 1 号位开始，向原数组填充 7，到 2 号位之前结束。
+
+//注意，如果填充的类型为对象，那么被赋值的是同一个内存地址的对象，而不是深拷贝对象。
+
+let arr = new Array(3).fill({name: "Mike"});
+arr[0].name = "Ben";
+arr
+// [{name: "Ben"}, {name: "Ben"}, {name: "Ben"}]
+
+let arr = new Array(3).fill([]);
+arr[0].push(5);
+arr
+// [[5], [5], [5]]
