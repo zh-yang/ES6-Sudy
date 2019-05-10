@@ -84,4 +84,31 @@ const go = function*(){
 
 
 //2.扩展API：Array.from()
+//Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）
+//和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）。
+
+let arrayLike = {
+    '0': 'a',
+    '1': 'b',
+    '2': 'c',
+    length: 3
+};
+
+// ES5的写法
+var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']
+
+// ES6的写法
+let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+
+//如果参数是一个真正的数组，Array.from会返回一个一模一样的新数组。
+
+Array.from([1, 2, 3])
+// [1, 2, 3]
+
+//扩展运算符背后调用的是遍历器接口（Symbol.iterator），如果一个对象没有部署这个接口，就无法转换。Array.from方法还支持类似数组的对象。
+//所谓类似数组的对象，本质特征只有一点，即必须有length属性。
+//因此，任何有length属性的对象，都可以通过Array.from方法转为数组，而此时扩展运算符就无法转换。
+
+Array.from({ length: 3 });
+// [ undefined, undefined, undefined ]
 
