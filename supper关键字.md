@@ -18,3 +18,25 @@ obj.find() // "hello"
 ```
 
 上面代码中，对象obj.find()方法之中，通过super.foo引用了原型对象proto的foo属性。
+
+注意，super关键字表示原型对象时，只能用在对象的方法之中，用在其他地方都会报错。
+
+```js
+
+// 报错
+const obj = {
+  foo: super.foo
+}
+
+// 报错
+const obj = {
+  foo: () => super.foo
+}
+
+// 报错
+const obj = {
+  foo: function () {
+    return super.foo
+  }
+}
+```
