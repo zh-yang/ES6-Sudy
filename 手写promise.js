@@ -47,3 +47,9 @@ const mp = new MyPromise((res, rej)=>{
     res('成功执行')
   })
 })
+
+mp.then(val=>{
+  console.log('success',val)
+},error=>{
+  console.log('error',error)
+})
