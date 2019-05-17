@@ -41,3 +41,9 @@ class MyPromise {
     }
   }
 }
+
+const mp = new MyPromise((res, rej)=>{
+  setTimeout(()=> {
+    res('成功执行')
+  })
+})
