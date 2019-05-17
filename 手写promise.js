@@ -31,4 +31,13 @@ class MyPromise {
       reject(error)
     }
   }
+  
+  then(onFulfilled, onRejected){
+    if(this.state === 'fulfilled'){
+      onFulfilled(this.value)
+    }
+    if(this.state === 'rejected'){
+      onRejected(this.error)
+    }
+  }
 }
