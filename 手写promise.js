@@ -6,11 +6,17 @@ class MyPromise {
     this.value = null
     this.error = null
     
+    // 存放成功回调的函数
+    this.onFulfilledCallbacks = [];
+    // 存放失败回调的函数
+    this.onRejectedCallbacks = [];
+    
     //定义resolve函数
     const resolve = value => {
       if(this.state === 'pending') {
         this.value = value
         this.state = 'fulfilled'
+        this.onFulfilledCallbacks.map(fn => fn())
       }
     }
     
@@ -19,6 +25,7 @@ class MyPromise {
       if(this.state === 'pending') {
         this.error = error
         this.state = 'rejected'
+        this.onRejectedCallbacks.map(fn => fn())
       }
     }
     
@@ -38,6 +45,14 @@ class MyPromise {
     }
     if(this.state === 'rejected'){
       onRejected(this.error)
+    }
+    if(this.state === PENDING) {
+        this.onFulfilledCallbacks.push(()=> {
+            onFulfilled(this.value);
+        });
+        this.onRejectedCallbacks.push(()=> {
+            onRejected(this.value);
+        })
     }
   }
 }
