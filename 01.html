@@ -17,4 +17,9 @@
   //3.剪头函数
   
   //4.上下文调用，改变this
+  function fn () {
+    console.log(this)
+    
+  }
+  fn.apply(1)   //this为Number(1)
 </script>
