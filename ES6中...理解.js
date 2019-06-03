@@ -7,6 +7,7 @@
 //其实展开语法对所有可迭代的类型都有效
 
 //语法：
+
 //函数调用：myFunction(...iterableObj);
 //字面量数组构造或字符串：[...iterableObj, '4', ...'hello', 6];
 //构造字面量对象时,进行克隆或者属性拷贝（ECMAScript 2018规范新增特性）：let objClone = { ...obj };
