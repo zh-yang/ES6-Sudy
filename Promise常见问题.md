@@ -13,6 +13,7 @@ promise常见误区
 如果在`onFulfilled`中发生异常，在`onRejected`中是捕获不到的
 
 * promise.then(onFulfilled).catch(onRejected)
+
 `.then`中产生的异常能在`.catch`中捕获
 
 一般情况，还是建议使用第二种，因为能捕获之前的所有异常。当然了，第二种的.catch()也可以使用.then()表示，它们本质上是没有区别的，.catch === .then(null, onRejected)
