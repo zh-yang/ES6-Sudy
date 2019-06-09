@@ -9,6 +9,7 @@ promise常见误区
 ### 情景1：reject和catch的区别
 
 * promise.then(onFulfilled, onRejected)
+
 如果在`onFulfilled`中发生异常，在`onRejected`中是捕获不到的
 
 * promise.then(onFulfilled).catch(onRejected)
