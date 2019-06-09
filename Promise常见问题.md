@@ -79,6 +79,7 @@ Catch Error: A ReferenceError: x is not defined
 Task B
 Final Task
  ```
+ 
 在taskA后多了对A的处理，因此，A抛错时，会按照A会按照 taskA → onRejectedA → taskB → finalTask这个流程来处理，此时taskB是正常执行的。
 
 ### 情景3：每次调用then都会返回一个新的promise对象，而then内部只是返回数据，供下一个then使用
