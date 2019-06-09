@@ -132,6 +132,7 @@ promise.catch(function(e) {
 ### 情景5：promise状态变为resolve或reject，就凝固了，不会再改变
 
 ```js
+
 console.log(1);
 new Promise(function (resolve, reject){
     reject();
