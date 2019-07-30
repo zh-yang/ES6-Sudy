@@ -59,6 +59,7 @@ b.shift().shift(); // 1
 //Array.concat 函数常用于将一个数组连接到另一个数组的后面。如果不使用展开语法, 代码可能是下面这样的:
 var arr1 = [0, 1, 2];
 var arr2 = [3, 4, 5];
+
 // 将 arr2 中所有元素附加到 arr1 后面并返回
 var arr3 = arr1.concat(arr2);
 //使用展开语法:
